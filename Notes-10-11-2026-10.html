@@ -1,0 +1,700 @@
+<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GROUP 4 RAMIREZ | PC Troubleshooting</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080e19;color:#edf5ff;
+ font-family:Arial,sans-serif;overflow-x:hidden;
+}
+header{
+ background:#101e32;border-bottom:2px solid #13baff;
+ padding:13px 20px;display:flex;justify-content:space-between;
+ align-items:center;gap:10px;flex-wrap:wrap;
+}
+h1{font-size:20px;color:#31caff;margin:0}
+h2{font-size:17px;margin:0 0 10px;color:#36caff}
+h3{font-size:13px;margin:0 0 8px;color:#49cfff}
+p{font-size:13px}
+button,select{
+ border:1px solid #365776;border-radius:7px;
+ background:#192f49;color:white;padding:10px;
+ cursor:pointer;font-weight:bold;
+}
+button:hover{background:#087eaf}
+button:disabled{opacity:.35;cursor:not-allowed}
+.stat{
+ background:#1b3049;padding:9px 12px;border-radius:8px;
+ font-size:13px;white-space:nowrap
+}
+.stats{display:flex;gap:7px;flex-wrap:wrap}
+#app{max-width:1550px;margin:auto;padding:12px}
+.top{
+ display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+ gap:9px;margin-bottom:10px
+}
+.panel{
+ background:#111d30;border:1px solid #2c4562;
+ border-radius:11px;padding:13px;min-width:0
+}
+.top .panel{min-height:80px}
+.top p{margin:4px 0}
+.main{
+ display:grid;grid-template-columns:1.15fr .85fr;
+ gap:10px;align-items:stretch
+}
+.visual{
+ min-height:490px;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;overflow:hidden
+}
+#scene{
+ width:100%;height:380px;perspective:1000px;
+ display:flex;justify-content:center;align-items:center;
+}
+#computer{
+ width:min(410px,75%);height:320px;
+ position:relative;transform-style:preserve-3d;
+ transform:rotateY(-25deg) rotateX(4deg);
+ transition:transform .35s;
+}
+.case{
+ position:absolute;inset:0;
+ background:linear-gradient(135deg,#344a62,#101b2a 65%,#080e18);
+ border:5px solid #71859a;border-radius:16px;
+ box-shadow:0 20px 45px #000c,0 0 25px #12baff33;
+}
+.side{
+ position:absolute;inset:12px;
+ background:linear-gradient(145deg,#173447dd,#101d2bdd);
+ border:2px solid #6b91a7;border-radius:8px;
+ overflow:hidden;
+}
+.glow{
+ height:3px;background:#21d7ff;
+ box-shadow:0 0 15px #21d7ff
+}
+.board{
+ position:absolute;inset:16px 13px 22px;
+ background:#104238;border:2px solid #419d86;
+ border-radius:8px;padding:10px;
+ display:grid;grid-template-columns:1fr 1fr 1fr;
+ grid-template-rows:1fr 1fr 1fr;gap:8px;
+}
+.part{
+ border:1px solid #80b7a4;
+ border-radius:5px;background:linear-gradient(145deg,#285b52,#102c2a);
+ display:flex;flex-direction:column;justify-content:center;
+ align-items:center;gap:4px;color:white;
+ font-size:11px;cursor:pointer;
+ box-shadow:inset 0 0 10px #0008;transition:.2s;
+}
+.part span{font-size:25px}
+.part:hover{border:2px solid #26d9ff;transform:translateZ(8px)}
+.part.selected{border:3px solid #29d5ff;background:#14627b}
+.part.damaged{border-color:#ff5555;box-shadow:0 0 12px #f44}
+.part.fixed{border-color:#3cff9c;box-shadow:0 0 12px #3cff9c}
+.top3d{
+ position:absolute;top:-24px;left:12px;width:365px;height:24px;
+ background:#435c76;transform:skewX(-60deg);
+ border:2px solid #71879c
+}
+.side3d{
+ position:absolute;right:-36px;top:10px;width:36px;height:285px;
+ background:linear-gradient(90deg,#17283b,#455a71);
+ transform:skewY(-28deg);border:2px solid #71879c
+}
+.fan{
+ position:absolute;right:12px;top:10px;
+ border:3px solid #28d7ff;border-radius:50%;
+ width:42px;height:42px;display:grid;place-items:center;
+ animation:spin 5s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand{
+ position:absolute;bottom:6px;right:10px;
+ color:#40d9ff;font-size:10px;letter-spacing:3px
+}
+.controls{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.workbench{display:flex;flex-direction:column;gap:10px}
+#selected{
+ padding:11px;background:#1a304a;
+ border-radius:7px;color:#38d5ff;font-weight:bold
+}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.actions button{font-size:12px}
+#procedure{width:100%;margin-top:6px}
+#message{
+ background:#091729;border:1px solid #263e58;
+ border-radius:8px;padding:11px;min-height:52px;
+ font-size:13px;color:#46d5ff
+}
+.inventory{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:7px
+}
+.tool{
+ background:#172a40;border:1px solid #3a5674;
+ border-radius:8px;text-align:center;padding:9px 3px;
+ cursor:pointer;font-size:11px;
+}
+.tool span{font-size:25px;display:block;margin-bottom:5px}
+.tool.selected{border:2px solid #22d5ff;background:#16445a}
+#log{
+ background:#080f1b;border-radius:7px;padding:8px;
+ height:100px;overflow:auto;font-size:11px;color:#b7cee1
+}
+#log p{margin:4px;border-bottom:1px solid #24364b;padding:4px}
+.lower{
+ display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px
+}
+.customer{
+ background:#10243a;border:1px solid #315573;
+ padding:12px;border-radius:9px
+}
+.customer strong{color:#42d5ff}
+.bottom{
+ display:flex;justify-content:space-between;gap:8px;
+ flex-wrap:wrap;align-items:center;margin-top:10px
+}
+#overlay{
+ display:none;position:fixed;inset:0;background:#030812ed;
+ z-index:50;align-items:center;justify-content:center;
+ text-align:center;padding:15px
+}
+#overlay .panel{max-width:450px;width:100%;padding:30px}
+#overlay h1{font-size:29px}
+.good{color:#4bed9b}.bad{color:#ff7373}
+@media(max-width:850px){
+ .top{grid-template-columns:1fr 1fr}
+ .main{grid-template-columns:1fr}
+ .visual{min-height:430px}
+ .lower{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ header{align-items:flex-start}
+ .top{grid-template-columns:1fr 1fr}
+ #scene{height:300px}
+ #computer{height:260px}
+ .side3d{height:225px}
+ .inventory{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div>
+  <h1>🖥️ GROUP 4 RAMIREZ</h1>
+  <small>PC TROUBLESHOOTING SIMULATOR</small>
+ </div>
+ <div class="stats">
+  <div class="stat">⭐ <b id="points">0</b></div>
+  <div class="stat">💰 <b id="credits">100</b></div>
+  <div class="stat">🔧 <b id="attempts">3</b>/3</div>
+ </div>
+</header>
+
+<div id="app">
+
+ <div class="top">
+  <div class="panel">
+   <h3>📋 CUSTOMER REPORT</h3>
+   <p id="problem">Computer is running slowly.</p>
+  </div>
+  <div class="panel">
+   <h3>🎯 MISSION</h3>
+   <p id="mission">1 / 20</p>
+  </div>
+  <div class="panel">
+   <h3>🏆 DIFFICULTY</h3>
+   <p id="difficulty">EASY</p>
+  </div>
+  <div class="panel">
+   <h3>📡 PC STATUS</h3>
+   <p id="pcstatus" class="bad">● FAULT DETECTED</p>
+  </div>
+ </div>
+
+ <div class="main">
+
+  <div class="panel visual">
+   <h2>3D SYSTEM UNIT</h2>
+   <div id="scene">
+    <div id="computer">
+     <div class="top3d"></div>
+     <div class="case">
+      <div class="side">
+       <div class="glow"></div>
+       <div class="fan">🌀</div>
+       <div class="board" id="board"></div>
+       <div class="brand">RAMIREZ TECH</div>
+      </div>
+     </div>
+     <div class="side3d"></div>
+    </div>
+   </div>
+   <div id="statusLine">Select a component to inspect.</div>
+   <br>
+   <div class="controls">
+    <button onclick="rotate(-25)">↶ Rotate</button>
+    <button onclick="rotate(25)">Rotate ↷</button>
+    <button onclick="zoom(1.1)">＋ Zoom</button>
+    <button onclick="zoom(.9)">－ Zoom</button>
+    <button onclick="resetView()">Reset View</button>
+   </div>
+  </div>
+
+  <div class="panel workbench">
+   <h2>🧰 TECHNICIAN WORKBENCH</h2>
+   <div id="selected">Selected Component: NONE</div>
+
+   <div class="actions">
+    <button onclick="inspect()">🔍 INSPECT</button>
+    <button onclick="diagnose()">🧠 DIAGNOSE</button>
+    <button onclick="repair()">🔧 REPAIR</button>
+    <button onclick="replacePart()">♻️ REPLACE (20)</button>
+    <button onclick="testPC()">⚡ TEST PC</button>
+    <button onclick="hint()">💡 HINT</button>
+   </div>
+
+   <div>
+    <h3>🔧 REPAIR PROCEDURE</h3>
+    <select id="procedure">
+     <option value="">Select procedure...</option>
+     <option value="reseat">Reseat / reconnect</option>
+     <option value="clean">Clean component</option>
+     <option value="cool">Fix cooling system</option>
+     <option value="power">Check power connection</option>
+     <option value="storage">Check storage connection</option>
+     <option value="software">Run diagnostic check</option>
+    </select>
+   </div>
+
+   <div>
+    <h3>🎒 TOOL INVENTORY — SELECT A TOOL</h3>
+    <div class="inventory" id="inventory"></div>
+    <p class="small" id="toolDescription">Choose a tool before repairing.</p>
+   </div>
+
+   <div id="message">Welcome, Technician! Inspect the computer first.</div>
+
+   <div>
+    <h3>📜 TECHNICIAN LOG</h3>
+    <div id="log">
+     <p>System initialized.</p>
+     <p>Waiting for technician...</p>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="lower">
+  <div class="customer">
+   <h3>👤 CUSTOMER MODE</h3>
+   <p><strong>Customer:</strong> <span id="customer">Alex</span></p>
+   <p><strong>Request:</strong> <span id="request">Please check my computer.</span></p>
+   <p><strong>Satisfaction:</strong> <span id="satisfaction">Waiting for repair...</span></p>
+  </div>
+  <div class="customer">
+   <h3>🏅 TECHNICIAN PROGRESS</h3>
+   <p><strong>Rank:</strong> <span id="rank">Beginner Technician</span></p>
+   <p><strong>Completed missions:</strong> <span id="done">0</span> / 20</p>
+   <p><strong>Customer reputation:</strong> <span id="reputation">100%</span></p>
+  </div>
+ </div>
+
+ <div class="bottom">
+  <small>GROUP 4 RAMIREZ | ICT EDUCATIONAL GAME</small>
+  <div class="controls">
+   <button onclick="previousMission()">◀ BACK</button>
+   <button onclick="nextMission()" id="next" disabled>NEXT MISSION ▶</button>
+   <button onclick="toggleMusic()" id="musicBtn">🎵 MUSIC OFF</button>
+   <button onclick="restart()">RESTART</button>
+  </div>
+ </div>
+</div>
+
+<div id="overlay">
+ <div class="panel">
+  <h1 id="overlayTitle">MISSION FAILED!</h1>
+  <p id="overlayText"></p>
+  <button onclick="retry()">🔄 RETRY MISSION</button>
+  <button onclick="closeOverlay()">CLOSE</button>
+ </div>
+</div>
+
+<script>
+const parts=[
+ {name:"CPU",icon:"🧠"},
+ {name:"RAM",icon:"▤"},
+ {name:"GPU",icon:"🎮"},
+ {name:"SSD",icon:"💾"},
+ {name:"HDD",icon:"💿"},
+ {name:"PSU",icon:"🔌"},
+ {name:"MOTHERBOARD",icon:"🟩"},
+ {name:"COOLING FAN",icon:"🌀"},
+ {name:"POWER CABLE",icon:"🔗"}
+];
+
+const tools=[
+ {name:"Screwdriver",icon:"🪛",description:"For safely loosening or securing computer screws.",use:["reseat","storage"]},
+ {name:"Cleaning Brush",icon:"🧹",description:"For removing dust from accessible components.",use:["clean","cool"]},
+ {name:"Multimeter",icon:"⚡",description:"For educational power and electrical checks.",use:["power"]},
+ {name:"Diagnostic Software",icon:"💻",description:"For checking system and hardware status.",use:["software"]}
+];
+
+const missions=[
+ {level:"EASY",problem:"The computer is running slowly.",fault:"RAM",method:"reseat",tool:"Screwdriver",hint:"Check the computer memory.",customer:"Alex",request:"My computer is very slow. Can you check it?"},
+ {level:"EASY",problem:"The computer becomes hot during use.",fault:"COOLING FAN",method:"clean",tool:"Cleaning Brush",hint:"Inspect the cooling system.",customer:"Mia",request:"My PC gets hot while I am using it."},
+ {level:"EASY",problem:"The computer cannot save new files.",fault:"SSD",method:"storage",tool:"Screwdriver",hint:"Check the storage device.",customer:"Noah",request:"I cannot save my school files."},
+ {level:"EASY",problem:"The monitor displays no graphics.",fault:"GPU",method:"reseat",tool:"Screwdriver",hint:"Inspect the graphics card.",customer:"Sam",request:"My monitor does not display graphics."},
+ {level:"EASY",problem:"The computer has no power.",fault:"POWER CABLE",method:"power",tool:"Multimeter",hint:"Check the power connection.",customer:"Liam",request:"My desktop will not turn on."},
+
+ {level:"MEDIUM",problem:"The computer randomly shuts down.",fault:"PSU",method:"power",tool:"Multimeter",hint:"Investigate the power supply.",customer:"Ella",request:"My computer suddenly turns off."},
+ {level:"MEDIUM",problem:"The system cannot detect its hard drive.",fault:"HDD",method:"storage",tool:"Screwdriver",hint:"Inspect the hard disk.",customer:"Ryan",request:"My hard drive is not detected."},
+ {level:"MEDIUM",problem:"The computer fails to boot.",fault:"MOTHERBOARD",method:"software",tool:"Diagnostic Software",hint:"Inspect the main board.",customer:"Ava",request:"My PC cannot start properly."},
+ {level:"MEDIUM",problem:"The processor overheats.",fault:"COOLING FAN",method:"clean",tool:"Cleaning Brush",hint:"Check the cooling system.",customer:"Ethan",request:"My processor gets too hot."},
+ {level:"MEDIUM",problem:"The computer freezes during use.",fault:"RAM",method:"reseat",tool:"Screwdriver",hint:"Inspect the memory.",customer:"Zoe",request:"My computer freezes while working."},
+
+ {level:"HARD",problem:"The PC crashes during graphics tasks.",fault:"GPU",method:"reseat",tool:"Screwdriver",hint:"Investigate the graphics hardware.",customer:"Daniel",request:"My computer crashes when using graphics apps."},
+ {level:"HARD",problem:"The computer has unstable power.",fault:"PSU",method:"power",tool:"Multimeter",hint:"Inspect the power supply.",customer:"Luna",request:"My desktop has an unstable power problem."},
+ {level:"HARD",problem:"The processor is not detected.",fault:"CPU",method:"reseat",tool:"Screwdriver",hint:"Inspect the processor.",customer:"James",request:"My computer cannot detect the processor."},
+ {level:"HARD",problem:"The computer has repeated storage errors.",fault:"SSD",method:"storage",tool:"Screwdriver",hint:"Check the solid-state drive.",customer:"Isla",request:"I keep getting storage errors."},
+ {level:"HARD",problem:"Several components are not detected.",fault:"MOTHERBOARD",method:"software",tool:"Diagnostic Software",hint:"Inspect the motherboard.",customer:"Oliver",request:"Some of my hardware is not recognized."},
+
+ {level:"EXTREME",problem:"The computer boots intermittently and freezes.",fault:"RAM",method:"reseat",tool:"Screwdriver",hint:"Perform a careful memory diagnosis.",customer:"Sophia",request:"My PC sometimes starts and sometimes freezes."},
+ {level:"EXTREME",problem:"The PC shuts down after extended use.",fault:"COOLING FAN",method:"clean",tool:"Cleaning Brush",hint:"Check cooling performance.",customer:"Lucas",request:"My computer shuts down after a while."},
+ {level:"EXTREME",problem:"The computer does not start.",fault:"PSU",method:"power",tool:"Multimeter",hint:"Check the power supply.",customer:"Grace",request:"My computer will not start at all."},
+ {level:"EXTREME",problem:"The operating system cannot find the boot drive.",fault:"SSD",method:"storage",tool:"Screwdriver",hint:"Inspect the storage device.",customer:"Henry",request:"My operating system cannot find the drive."},
+ {level:"EXTREME",problem:"The system fails hardware initialization.",fault:"MOTHERBOARD",method:"software",tool:"Diagnostic Software",hint:"Investigate the main board.",customer:"Chloe",request:"My PC cannot initialize its hardware."}
+];
+
+let index=0,points=0,credits=100;
+let selected="",selectedTool="";
+let inspected=false,diagnosed=false,repaired=false,completed=false;
+let attempts=3,rotation=-25,scale=1;
+let reputation=100,completedCount=0;
+let audio=null,musicTimer=null,musicOn=false;
+
+function drawParts(){
+ const board=document.getElementById("board");
+ board.innerHTML="";
+ parts.forEach(p=>{
+  let d=document.createElement("div");
+  d.className="part";
+  if(selected===p.name)d.classList.add("selected");
+  if(p.name===missions[index].fault&&!repaired)d.classList.add("damaged");
+  if(p.name===missions[index].fault&&repaired)d.classList.add("fixed");
+  d.innerHTML="<span>"+p.icon+"</span><b>"+p.name+"</b>";
+  d.onclick=()=>choose(p.name);
+  board.appendChild(d);
+ });
+}
+
+function drawTools(){
+ const box=document.getElementById("inventory");
+ box.innerHTML="";
+ tools.forEach(t=>{
+  let d=document.createElement("div");
+  d.className="tool"+(selectedTool===t.name?" selected":"");
+  d.innerHTML="<span>"+t.icon+"</span>"+t.name;
+  d.onclick=()=>selectTool(t.name);
+  box.appendChild(d);
+ });
+}
+
+function log(t){
+ let p=document.createElement("p");
+ p.textContent="➤ "+t;
+ document.getElementById("log").prepend(p);
+}
+
+function say(t){
+ document.getElementById("message").textContent=t;
+}
+
+function update(){
+ const m=missions[index];
+ document.getElementById("points").textContent=points;
+ document.getElementById("credits").textContent=credits;
+ document.getElementById("attempts").textContent=attempts;
+ document.getElementById("mission").textContent=(index+1)+" / 20";
+ document.getElementById("difficulty").textContent=m.level;
+ document.getElementById("problem").textContent=m.problem;
+ document.getElementById("customer").textContent=m.customer;
+ document.getElementById("request").textContent=m.request;
+ document.getElementById("done").textContent=completedCount;
+ document.getElementById("reputation").textContent=reputation+"%";
+ document.getElementById("rank").textContent=
+  points>=300?"Master Technician":
+  points>=150?"Expert Technician":
+  points>=60?"Junior Technician":"Beginner Technician";
+
+ document.getElementById("pcstatus").textContent=
+  completed?"● PC WORKING":"● FAULT DETECTED";
+ document.getElementById("pcstatus").className=completed?"good":"bad";
+ document.getElementById("next").disabled=!completed;
+
+ drawParts();
+ drawTools();
+}
+
+function choose(name){
+ if(completed)return;
+ selected=name;
+ document.getElementById("selected").textContent="Selected: "+name;
+ document.getElementById("statusLine").textContent="Selected component: "+name;
+ drawParts();
+}
+
+function selectTool(name){
+ selectedTool=name;
+ let t=tools.find(x=>x.name===name);
+ document.getElementById("toolDescription").textContent=t.description;
+ log("Tool selected: "+name);
+ drawTools();
+}
+
+function inspect(){
+ if(!selected)return say("Select a component first.");
+ inspected=true;
+ if(selected===missions[index].fault){
+  say("⚠ Abnormal condition detected in "+selected+".");
+  log("Suspicious component detected: "+selected);
+ }else{
+  say(selected+" appears normal during inspection.");
+  log("Inspected "+selected+".");
+ }
+}
+
+function diagnose(){
+ if(!selected)return say("Select a component first.");
+ if(!inspected)return say("Inspect the selected component first.");
+
+ if(selected===missions[index].fault){
+  diagnosed=true;
+  say("✓ CORRECT DIAGNOSIS! "+selected+" is faulty.");
+  log("Correct diagnosis: "+selected);
+ }else{
+  say("Incorrect diagnosis. Inspect another component.");
+  log("Incorrect diagnosis: "+selected);
+ }
+}
+
+function fail(reason){
+ attempts--;
+ points=Math.max(0,points-10);
+ reputation=Math.max(0,reputation-5);
+ say("❌ REPAIR FAILED! "+reason);
+ log("Repair failed: -10 points. Attempts left: "+attempts);
+ update();
+
+ if(attempts<=0){
+  document.getElementById("satisfaction").textContent="Customer disappointed";
+  document.getElementById("overlayTitle").textContent="MISSION FAILED!";
+  document.getElementById("overlayText").textContent=
+   "You used all 3 attempts. The customer is still waiting. You lost 10 points for the last failed attempt. Retry the mission!";
+  document.getElementById("overlay").style.display="flex";
+ }
+}
+
+function repair(){
+ const m=missions[index];
+ if(!selected)return say("Select a component first.");
+ if(!diagnosed)return say("Diagnose the faulty component first.");
+ if(repaired)return say("This component is already repaired.");
+
+ if(selected!==m.fault){
+  fail("Wrong component selected.");
+  return;
+ }
+
+ if(!selectedTool)return say("Choose a tool from your inventory.");
+ if(!tools.find(t=>t.name===selectedTool).use.includes(document.getElementById("procedure").value)){
+  fail("Wrong tool for this repair procedure.");
+  return;
+ }
+
+ if(document.getElementById("procedure").value!==m.method){
+  fail("Incorrect repair procedure. Try another procedure.");
+  return;
+ }
+
+ if(selectedTool!==m.tool){
+  fail("This tool is not suitable for the component.");
+  return;
+ }
+
+ repaired=true;
+ credits+=10;
+ say("✓ REPAIR SUCCESSFUL! Run the PC test.");
+ log("Correct tool and repair procedure used.");
+ update();
+}
+
+function replacePart(){
+ const m=missions[index];
+ if(!selected)return say("Select a component first.");
+ if(!diagnosed)return say("Diagnose the faulty component first.");
+ if(selected!==m.fault){
+  fail("Wrong component selected for replacement.");
+  return;
+ }
+ if(repaired)return say("Component already repaired.");
+ if(credits<20)return say("Not enough credits. You need 20.");
+ credits-=20;
+ repaired=true;
+ say("✓ COMPONENT REPLACED! Test the PC.");
+ log("Replacement successful. -20 credits.");
+ update();
+}
+
+function testPC(){
+ if(!repaired)return say("Repair or replace the faulty component first.");
+ if(completed)return;
+ completed=true;
+ completedCount++;
+ points+=20;
+ credits+=15;
+ reputation=Math.min(100,reputation+2);
+ document.getElementById("satisfaction").textContent="😊 SATISFIED!";
+ say("🎉 PC TEST PASSED! Customer is satisfied. +20 points!");
+ log("PC TEST PASSED. Customer satisfied. +20 points.");
+ update();
+}
+
+function hint(){
+ say("💡 HINT: "+missions[index].hint);
+}
+
+function retry(){
+ attempts=3;
+ selected="";
+ selectedTool="";
+ inspected=false;
+ diagnosed=false;
+ repaired=false;
+ completed=false;
+ document.getElementById("procedure").value="";
+ document.getElementById("selected").textContent="Selected: NONE";
+ document.getElementById("satisfaction").textContent="Waiting for repair...";
+ document.getElementById("overlay").style.display="none";
+ document.getElementById("toolDescription").textContent="Choose a tool before repairing.";
+ say("Mission restarted. You have 3 attempts.");
+ log("Mission restarted. Attempts restored.");
+ update();
+}
+
+function closeOverlay(){
+ document.getElementById("overlay").style.display="none";
+}
+
+function nextMission(){
+ if(!completed)return;
+ index++;
+ if(index>=missions.length){
+  document.getElementById("overlayTitle").textContent="🏆 GAME COMPLETED!";
+  document.getElementById("overlayText").textContent=
+   "Congratulations! All 20 missions completed! Final score: "+points+
+   ". Customer reputation: "+reputation+"%.";
+  document.getElementById("overlay").style.display="flex";
+  return;
+ }
+ resetMission();
+}
+
+function previousMission(){
+ if(index>0){
+  index--;
+  resetMission();
+ }
+}
+
+function resetMission(){
+ selected="";
+ selectedTool="";
+ inspected=false;
+ diagnosed=false;
+ repaired=false;
+ completed=false;
+ attempts=3;
+ document.getElementById("procedure").value="";
+ document.getElementById("selected").textContent="Selected: NONE";
+ document.getElementById("satisfaction").textContent="Waiting for repair...";
+ document.getElementById("toolDescription").textContent="Choose a tool before repairing.";
+ say("New customer! Read the report and inspect the PC.");
+ log("Mission "+(index+1)+" started.");
+ update();
+}
+
+function rotate(n){
+ rotation+=n;
+ applyView();
+}
+function zoom(n){
+ scale=Math.max(.65,Math.min(1.4,scale*n));
+ applyView();
+}
+function applyView(){
+ document.getElementById("computer").style.transform=
+ "rotateY("+rotation+"deg) rotateX(4deg) scale("+scale+")";
+}
+function resetView(){
+ rotation=-25;scale=1;applyView();
+}
+
+function restart(){
+ if(confirm("Restart the entire game?")){
+  index=0;points=0;credits=100;
+  reputation=100;completedCount=0;
+  resetMission();
+ }
+}
+
+// Original synthesized background music
+function toggleMusic(){
+ if(musicOn){
+  musicOn=false;
+  clearTimeout(musicTimer);
+  if(audio){audio.close();audio=null}
+  document.getElementById("musicBtn").textContent="🎵 MUSIC OFF";
+ }else{
+  musicOn=true;
+  audio=new(window.AudioContext||window.webkitAudioContext)();
+  document.getElementById("musicBtn").textContent="🎵 MUSIC ON";
+  playBeat();
+ }
+}
+
+function playBeat(){
+ if(!musicOn||!audio)return;
+ let notes=[261.63,329.63,392,329.63,293.66,349.23,440,392];
+ let i=0;
+ function beat(){
+  if(!musicOn||!audio)return;
+  let osc=audio.createOscillator();
+  let gain=audio.createGain();
+  osc.type="sine";
+  osc.frequency.value=notes[i++%notes.length];
+  gain.gain.setValueAtTime(.025,audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.2);
+  osc.connect(gain);gain.connect(audio.destination);
+  osc.start();osc.stop(audio.currentTime+.21);
+  musicTimer=setTimeout(beat,300);
+ }
+ beat();
+}
+
+update();
+</script>
+</body>
+</html>
+</pre>
+        </body>
+    </html>
